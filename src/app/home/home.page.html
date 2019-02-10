@@ -1,12 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content color="primary" padding>
+  <p text-center>
+    <img src="assets/logo.png"  width="128" alt="WhaTodo">
+  </p>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <ion-list lines="full">
+    <ion-list-header>{{ list.title }}</ion-list-header>
+    <ion-item *ngFor="let task of list.tasks">
+      {{ task.title}}
+      <ion-icon name="checkmark-circle" slot="start" *ngIf="task.done"></ion-icon>
+      <ion-icon name="radio-button-off" slot="start" *ngIf="!task.done"></ion-icon>
+      <ion-button slot="end" fill="clear" color="dark">
+          <ion-icon name="trash" slot="start"></ion-icon>
+      </ion-button>
+    </ion-item>
+    
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+        <ion-fab-button (click)="showAddTask()">
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="showAddList()">
+          <ion-icon name="list"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button>
+          <ion-icon name="document"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button>
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+  
+      <ion-fab-list side="start">
+        <ion-fab-button (click)="showLists()">
+          <ion-icon name="apps"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+  </ion-fab>
 </ion-content>
